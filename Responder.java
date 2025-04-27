@@ -30,7 +30,7 @@ public class Responder
     /**
      * Construct a Responder
      */
-    public Responder()
+    public Responder() 
     {
         responseMap = new HashMap<>();
         defaultResponses = new ArrayList<>();
@@ -123,13 +123,19 @@ public class Responder
     {
         Charset charset = Charset.forName("US-ASCII");
         Path path = Paths.get(FILE_OF_DEFAULT_RESPONSES);
+        
         try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
             String response = reader.readLine();
-            while(response != null) {
+            while (response != null){
                 defaultResponses.add(response);
                 response = reader.readLine();
+                if (response == " "){
+                    response.join(reader.readLine()); 
+                }
+                
             }
         }
+        
         catch(FileNotFoundException e) {
             System.err.println("Unable to open " + FILE_OF_DEFAULT_RESPONSES);
         }
@@ -141,7 +147,9 @@ public class Responder
         if(defaultResponses.size() == 0) {
             defaultResponses.add("Could you elaborate on that?");
         }
+        
     }
+
 
     /**
      * Randomly select and return one of the default responses.

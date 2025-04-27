@@ -1,13 +1,11 @@
-That sounds odd. Could you 
-describe that problem in more detail?
+That sounds odd.
+Could you describe that problem in more detail?
 
 No other customer has ever complained
 about this before. What is your
 system configuration?
 
 That sounds interesting. Tell me more...
-
-
 
 I need a bit more information on that.
 
@@ -17,6 +15,7 @@ That is explained in the manual.
 Have you read the manual?
 
 Your description is a bit wishy-washy. 
+
 Have you got an expert there 
 with you who could describe 
 this more precisely?
