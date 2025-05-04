@@ -114,9 +114,25 @@ public class Responder
                         "Ahhh, BlueJ, yes. We tried to buy out those guys long ago, but\n" +
                         "they simply won't sell... Stubborn people they are. Nothing we can\n" +
                         "do about it, I'm afraid.");
+                        
+        Charset charset = Charset.forName("US-ASCII");
+        Path path = Paths.get(FILE_OF_RESPONSES); 
         
+        try (BufferedReader reader = Files.newBufferedReader(path, charset)){
+            String mapResponse = reader.readLine();     
+            mapResponse.split(","); 
+        }
+        catch(FileNotFoundException e) {
+            System.err.println("Unable to open " + FILE_OF_RESPONSES);
+        }
+        catch(IOException e) {
+            System.err.println("A problem was encountered reading " +
+                               FILE_OF_RESPONSES);
+        }
+        if(responseMap.size() == 0) {
+            responseMap.put("", "Could you elaborate on that?");
+        }
     }
-
     /**
      * Build up a list of default responses from which we can pick
      * if we don't know what else to say.
@@ -133,7 +149,7 @@ public class Responder
                 response = reader.readLine(); 
                 nextLine = reader.readLine(); 
                 defaultResponses.add(nextLine); 
-                System.out.println(response + nextLine + "\n"); 
+                System.out.println(response + nextLine + "\n"); // testing to see the format
             }
         }
         
