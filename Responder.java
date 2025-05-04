@@ -14,8 +14,8 @@ import java.util.*;
  * in the HashMap, the corresponding response is returned. If none of the input
  * words is recognized, one of the default responses is randomly chosen.
  * 
- * @author David J. Barnes and Michael Kölling.
- * @version 2016.02.29
+ * @author Emily Lubonty
+ * @version 5-4-2025
  */
 public class Responder
 {
@@ -25,6 +25,7 @@ public class Responder
     private ArrayList<String> defaultResponses;
     // The name of the file containing the default responses.
     private static final String FILE_OF_DEFAULT_RESPONSES = "default.txt";
+    private static final String FILE_OF_RESPONSES = "responses.txt"; 
     private Random randomGenerator;
 
     /**
@@ -113,6 +114,7 @@ public class Responder
                         "Ahhh, BlueJ, yes. We tried to buy out those guys long ago, but\n" +
                         "they simply won't sell... Stubborn people they are. Nothing we can\n" +
                         "do about it, I'm afraid.");
+        
     }
 
     /**
@@ -125,14 +127,13 @@ public class Responder
         Path path = Paths.get(FILE_OF_DEFAULT_RESPONSES);
         
         try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
-            String response = reader.readLine();
+            String response = reader.readLine(); 
+            String nextLine = reader.readLine(); 
             while (response != null){
-                defaultResponses.add(response);
-                response = reader.readLine();
-                if (response == " "){
-                    response.join(reader.readLine()); 
-                }
-                
+                response = reader.readLine(); 
+                nextLine = reader.readLine(); 
+                defaultResponses.add(nextLine); 
+                System.out.println(response + nextLine + "\n"); 
             }
         }
         
